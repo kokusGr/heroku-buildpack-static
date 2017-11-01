@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+BUILD_DIR      = ARGV[0] # We expect to receive BUILD_DIR here
+USER_CONFIG    = "#{BUILD_DIR}/static.json".freeze
+
+config         = {}
+config         = JSON.parse(File.read(USER_CONFIG)) if File.exist?(USER_CONFIG)
+
+BUILD_COMMAND  = config['build']
+
+unless BUILD_COMMAND.nil?
+  puts "-----> Building static site with `#{BUILD_COMMAND}`"
+  Dir.chdir(BUILD_DIR) do
+    system BUILD_COMMAND
+  end
+  puts '       Static site built'
+end

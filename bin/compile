@@ -33,4 +33,7 @@ cp $bp_dir/scripts/config/templates/mime.types $build_dir/config
 
 mkdir -p $build_dir/logs
 
+# Run build command if build property is specified in static.json
+$bp_dir/scripts/config/make-build $build_dir
+
 exit 0
