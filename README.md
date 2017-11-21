@@ -246,6 +246,17 @@ When there are header conflicts, the last header definition always wins. The hea
 
 when accessing `/foo`, `X-Foo` will have the value `"foo"` and `X-Bar` will not be present.
 
+#### Build command
+
+You can add a `build` command that will run at compile time so that every time this project is compiled it will automatically build the static site.
+
+```
+{
+  "build": "gatsby build"
+}
+```
+
+
 ### Route Ordering
 
 * HTTPS redirect
