@@ -55,7 +55,7 @@ http {
     auth_basic_user_file <%= basic_auth_htpasswd_path %>;
   <% end %>
     
-    location /.well-known/apple-app-site-association {
+    location = /.well-known/apple-app-site-association {
       auth_basic off;
     }
 
