@@ -13,7 +13,7 @@ if config["headers"]
     if Regexp.compile("^#{NginxConfigUtil.to_regex(route)}$") =~ uri
       header_hash.each do |key, value|
         # value must be a string
-        req.headers_out[key] = NginxConfigUtil.interpolate(value.to_s, ENV)
+        req.headers_out[key] = value.to_s.sub('${CSP_EXTRA_DEFAULT_SRC}', ENV['CSP_EXTRA_DEFAULT_SRC'])
       end
       break
     end
