@@ -53,6 +53,8 @@ class NginxConfig
 
     json["routes"] ||= {}
     json["routes"] = NginxConfigUtil.parse_routes(json["routes"])
+    
+    json["block_maps"] = true unless ENV['ALLOW_MAP_ACCESS'] == 'true'
 
     json["redirects"] ||= {}
     json["redirects"].each do |loc, hash|
