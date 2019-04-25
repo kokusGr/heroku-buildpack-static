@@ -60,7 +60,7 @@ http {
     }
 
   <% if block_maps %>
-    location ~ .map$ {
+    location ~ \.map$ {
       return 404;
     }
   <% end %>
