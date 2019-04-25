@@ -59,6 +59,12 @@ http {
       auth_basic off;
     }
 
+  <% if block_maps %>
+    location ~ .map$ {
+      return 404;
+    }
+  <% end %>
+
     location / {
       mruby_post_read_handler /app/bin/config/lib/ngx_mruby/headers.rb cache;
       mruby_set $fallback /app/bin/config/lib/ngx_mruby/routes_fallback.rb cache;
