@@ -55,7 +55,10 @@ http {
     keepalive_timeout 5;
     root <%= root %>;
   <% if error_page %>
-    error_page 404 403 500 /<%= error_page %>;
+    error_page 404 500 /<%= error_page %>;
+  <% end %>
+  <% if forbidden_page %>
+    error_page 403 /<%= forbidden_page %>;
   <% end %>
   <% if proxies.any? %>
     resolver <%= resolver %>;
