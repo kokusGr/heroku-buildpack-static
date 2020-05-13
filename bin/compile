@@ -9,7 +9,7 @@ env_dir=$3
 bp_dir=$(dirname $(dirname $0))
 
 mkdir -p $build_dir/bin
-cp -a $bp/nginx -t $build_dir/bin/
+cp -a $bp_dir/nginx -t $build_dir/bin/
 cp -a $bp_dir/scripts/{boot,config} -t $build_dir/bin/
 
 mkdir -p $build_dir/config
