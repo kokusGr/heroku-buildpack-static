@@ -10,8 +10,7 @@ bp_dir=$(dirname $(dirname $0))
 
 mkdir $build/ngx_mruby
 cd ngx_mruby
-git clone https://github.com/matsumotory/ngx_mruby.git
-cd ngx_mruby
+git clone https://github.com/matsumotory/ngx_mruby.git .
 sh ./build.sh
 make install
 
