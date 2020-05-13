@@ -22,11 +22,17 @@ fetch_nginx_tarball() {
     fi
 }
 
+mkdir $build_dir/ngx_mruby
+curl -L "https://github.com/matsumotory/ngx_mruby/archive/v2.2.1.tar.gz" | tar xzC $build_dir/ngx_mruby
+cd $build_dir/ngx_mruby
+sh ./build.sh
+sudo make install
+
 mkdir -p $build_dir/bin
-$(fetch_nginx_tarball) | tar xzC $build_dir/bin
-nginx_version=$($build_dir/bin/nginx-$STACK -V 2>&1 | head -1 | awk '{ print $NF }')
-cp -a $bp_dir/scripts/{boot,config} -t $build_dir/bin/
-echo "-----> Installed ${nginx_version} to /app/bin"
+# $(fetch_nginx_tarball) | tar xzC $build_dir/bin
+# nginx_version=$($build_dir/bin/nginx-$STACK -V 2>&1 | head -1 | awk '{ print $NF }')
+# cp -a $bp_dir/scripts/{boot,config} -t $build_dir/bin/
+# echo "-----> Installed ${nginx_version} to /app/bin"
 
 mkdir -p $build_dir/config
 cp $bp_dir/scripts/config/templates/mime.types $build_dir/config
