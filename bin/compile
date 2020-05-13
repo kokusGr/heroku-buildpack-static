@@ -8,10 +8,16 @@ cache_dir=$2
 env_dir=$3
 bp_dir=$(dirname $(dirname $0))
 
-mkdir -p $build_dir/ngx_mruby
-cd $build_dir/ngx_mruby
-git clone https://github.com/matsumotory/ngx_mruby.git .
-sh ./build.sh
-make install
+mkdir -p $build_dir/bin
+cp -a $bp/nginx -t $build_dir/bin/
+cp -a $bp_dir/scripts/{boot,config} -t $build_dir/bin/
+
+mkdir -p $build_dir/config
+cp $bp_dir/scripts/config/templates/mime.types $build_dir/config
+
+mkdir -p $build_dir/logs
+
+# Run build command if build property is specified in static.json
+$bp_dir/scripts/config/make-build $build_dir
 
 exit 0
